@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/02/23 16:55:46.000.100,=D:\Users\T-Gamer\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/02/27 15:31:29.000.399,=D:\Users\T-Gamer\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/30 21:39:01.486,=D:\Users\T-Gamer\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/30 21:39:36.626,F:\PROJETOS\FMX\Android\FloatOverlay\Main.View.pas=D:\Users\T-Gamer\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/30 21:39:36.626,F:\PROJETOS\FMX\Android\FloatOverlay\Main.View.fmx=D:\Users\T-Gamer\Documentos\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
+    <Transaction>2024/03/30 21:39:55.866,F:\PROJETOS\FMX\Android\FloatOverlay\FloatOverlay.dproj=D:\Users\T-Gamer\Documentos\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2024/03/30 21:41:52.600,=F:\PROJETOS\FMX\Android\FloatOverlay\FMX.FloatOverlay.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile Android64="67d42177" Android="67d42177"/>
+	</ActiveMobileDevice>
+</BorlandProject>

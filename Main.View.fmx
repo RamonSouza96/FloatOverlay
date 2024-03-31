@@ -1,0 +1,112 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 800
+  ClientWidth = 400
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnDestroy = FormDestroy
+  DesignerMasterStyle = 0
+  object BtnPermission: TButton
+    Align = Top
+    Size.Width = 400.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Request Permiss'#227'o'
+    TextSettings.Trimming = None
+    OnClick = BtnPermissionClick
+  end
+  object Layout1: TLayout
+    Align = Top
+    Margins.Top = 20.000000000000000000
+    Position.Y = 69.000000000000000000
+    Size.Width = 400.000000000000000000
+    Size.Height = 300.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object CbxTypeShape: TComboBox
+      Align = Top
+      Items.Strings = (
+        'Rectangle'
+        'Circle')
+      ItemIndex = 0
+      ItemHeight = 10.000000000000000000
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 380.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'comboboxstyle'
+      TabOrder = 0
+    end
+    object ColorComboBox1: TColorComboBox
+      DropDownKind = Custom
+      Color = claTomato
+      Align = Top
+      DisableFocusEffect = False
+      ItemIndex = 139
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 59.000000000000000000
+      Size.Width = 380.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+    end
+    object Button2: TButton
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 108.000000000000000000
+      Size.Width = 380.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Create Shape'
+      TextSettings.Trimming = None
+      OnClick = Button2Click
+    end
+    object BtnSetText: TButton
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 243.000000000000000000
+      Size.Width = 380.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'SetText'
+      TextSettings.Trimming = None
+      OnClick = BtnSetTextClick
+    end
+    object EditText: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      StyleLookup = 'editstyle'
+      TabOrder = 4
+      Text = 'Delphi 2024'
+      Position.X = 10.000000000000000000
+      Position.Y = 198.000000000000000000
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 40.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 380.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end
