@@ -11,16 +11,19 @@ uses
 type
   TFormMain = class(TForm)
     BtnPermission: TButton;
-    Layout1: TLayout;
     CbxTypeShape: TComboBox;
     ColorComboBox1: TColorComboBox;
-    Button2: TButton;
+    BtnCreateShape: TButton;
     BtnSetText: TButton;
     EditText: TEdit;
-    procedure Button2Click(Sender: TObject);
+    BtnCreateWebView1: TButton;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    procedure BtnCreateShapeClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure BtnPermissionClick(Sender: TObject);
     procedure BtnSetTextClick(Sender: TObject);
+    procedure BtnCreateWebView1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,7 +66,19 @@ begin
     FFloatOverlay.SetText(EditText.Text);
 end;
 
-procedure TFormMain.Button2Click(Sender: TObject);
+procedure TFormMain.BtnCreateWebView1Click(Sender: TObject);
+var
+  LWidth: Integer;
+  LHeight: Integer;
+begin
+  LWidth := TAndroidHelper.Display.getWidth - 100;
+  LHeight := Round(0.3 * TAndroidHelper.Display.getHeight);
+
+  FFloatOverlay := TFMXFloatOverlay.Create;
+  FFloatOverlay.CreateFloatWebView(LWidth, LHeight, 100, 100, TAlphaColors.Brown);
+end;
+
+procedure TFormMain.BtnCreateShapeClick(Sender: TObject);
 begin
   FFloatOverlay := TFMXFloatOverlay.Create;
   FFloatOverlay.CreateFloatObject(500, 500, 100, 100, ColorComboBox1.Color,

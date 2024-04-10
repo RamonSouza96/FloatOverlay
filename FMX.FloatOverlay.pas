@@ -9,7 +9,8 @@ uses
   Androidapi.JNI.Util,
   Androidapi.JNI.GraphicsContentViewText,
   Androidapi.JNIBridge,
-  Androidapi.JNI.JavaTypes;
+  Androidapi.JNI.JavaTypes,
+  Androidapi.JNI.Webkit;
 
 type
   TMyClickListener = class(TJavaLocal, JView_OnClickListener)
@@ -30,6 +31,8 @@ type
     // Create the floating object with specified parameters
     procedure CreateFloatObject(AWidth, AHeight, APositionX, APositionY: Integer;
       AColor: TAlphaColor; AType: Integer);
+    procedure CreateFloatWebView(AWidth, AHeight, APositionX, APositionY: Integer;
+      AColor: TAlphaColor);
     // Delete the floating object from the screen
     procedure DeleteObject;
     // Set text to be displayed on the floating object
@@ -51,6 +54,7 @@ type
     FPositionX,  FPositionY : Integer;
     FPositionIniX, FPositionIniY : Single;
     FPositionViewX, FPositionViewY : Integer;
+    FWebView: JWebView;
 
 implementation
 
@@ -234,5 +238,83 @@ begin
   FWindowManager.addView(FLayoutView, FParams);
 end;
 
-end.
+procedure TFMXFloatOverlay.CreateFloatWebView(AWidth, AHeight, APositionX,
+  APositionY: Integer; AColor: TAlphaColor);
+var
+  LObject : JObject;
+  LGradientDrawable: JGradientDrawable;
+  LButton: JButton;
+  LButtonParams: JRelativeLayout_LayoutParams;
+  LWebViewParams: JRelativeLayout_LayoutParams;
+begin
+    // Prevent creation of multiple floating objects
+  if FLayoutView <> nil then
+    Exit;
 
+  // Set initial position
+  FPositionX := -1;
+  FPositionY := FPositionX;
+
+  // Create touch listener
+  FTouchListener := TFMXFloatOverlay.Create;
+
+  // Create layout
+  FLayoutView := TJRelativeLayout.JavaClass.init(SharedActivityContext);
+  FLayoutView.setOnTouchListener(FTouchListener);
+
+  // Layout parameters
+  FParams := TJWindowManager_LayoutParams.JavaClass.init;
+  FParams.&type := TJWindowManager_LayoutParams.JavaClass.TYPE_APPLICATION_OVERLAY;
+  FParams.flags := TJWindowManager_LayoutParams.JavaClass.FLAG_NOT_FOCUSABLE;
+  FParams.format := TJPixelFormat.JavaClass.TRANSLUCENT;
+  FParams.gravity := TJGravity.JavaClass.LEFT or TJGravity.JavaClass.TOP;
+  FParams.width := AWidth;
+  FParams.height := AHeight;
+  FParams.x := APositionX;
+  FParams.y := APositionY;
+
+  // Create shape
+  LGradientDrawable := TJGradientDrawable.JavaClass.init;
+  LGradientDrawable.setShape(TJGradientDrawable.JavaClass.RECTANGLE);
+  LGradientDrawable.setCornerRadius(20);
+  LGradientDrawable.setColor(TAndroidHelper.AlphaColorToJColor(AColor));
+  FLayoutView.setBackground(LGradientDrawable);
+
+  // Create Button  close
+  LButton := TJButton.JavaClass.init(SharedActivityContext);
+  LButton.setText(StrToJCharSequence('X'));
+  LButton.setTextAlignment(TJView.JavaClass.TEXT_ALIGNMENT_CENTER);
+  LButton.setTextColor(TJColor.JavaClass.WHITE);
+  LButton.setTextSize(10);
+  LButton.setBackgroundColor(TJColor.JavaClass.TRANSPARENT);
+  LButtonParams := TJRelativeLayout_LayoutParams.JavaClass.init(TJViewGroup_LayoutParams.JavaClass.WRAP_CONTENT, TJViewGroup_LayoutParams.JavaClass.WRAP_CONTENT);
+  LButtonParams.addRule(TJRelativeLayout.JavaClass.ALIGN_TOP);
+  LButtonParams.addRule(TJRelativeLayout.JavaClass.ALIGN_PARENT_RIGHT);
+  LButtonParams.width := 130;
+  LButtonParams.height := 100;
+  LButton.setLayoutParams(LButtonParams);
+  LButton.setOnClickListener(TMyClickListener.Create);
+  FLayoutView.addView(LButton);
+
+  // Create WebView
+  LWebViewParams := TJRelativeLayout_LayoutParams.JavaClass.init(TJViewGroup_LayoutParams.JavaClass.WRAP_CONTENT, TJViewGroup_LayoutParams.JavaClass.WRAP_CONTENT);
+  LWebViewParams.height := Round(0.7 * AHeight);
+  LWebViewParams.width := AWidth;
+  LWebViewParams.addRule(TJRelativeLayout.JavaClass.CENTER_HORIZONTAL);
+  LWebViewParams.addRule(TJRelativeLayout.JavaClass.CENTER_VERTICAL);
+
+  FWebView := TJWebView.JavaClass.init(SharedActivityContext);
+  FWebView.getSettings.setJavaScriptEnabled(True); // Enable JavaScript (opcional)
+  FWebView.loadUrl(StringToJString('https://www.youtube.com/embed/tAGnKpE4NCI')); // Load uma URL
+  FWebView.setLayoutParams(LWebViewParams);
+  FLayoutView.addView(FWebView); // Add ao layout
+
+  // Get WindowManager service
+  LObject := SharedActivityContext.getSystemService(TJContext.JavaClass.WINDOW_SERVICE);
+  FWindowManager := TJWindowManager.Wrap((LObject as ILocalObject).GetObjectID);
+
+  // Add the layout view to the WindowManager
+  FWindowManager.addView(FLayoutView, FParams);
+end;
+
+end.

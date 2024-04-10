@@ -19,14 +19,50 @@ object FormMain: TFormMain
     TextSettings.Trimming = None
     OnClick = BtnPermissionClick
   end
-  object Layout1: TLayout
+  object GroupBox1: TGroupBox
     Align = Top
-    Margins.Top = 20.000000000000000000
-    Position.Y = 69.000000000000000000
-    Size.Width = 400.000000000000000000
-    Size.Height = 300.000000000000000000
+    AutoTranslate = False
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 50.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 99.000000000000000000
+    Size.Width = 380.000000000000000000
+    Size.Height = 310.000000000000000000
     Size.PlatformDefault = False
+    Text = 'Shape'
     TabOrder = 1
+    object BtnCreateShape: TButton
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 138.000000000000000000
+      Size.Width = 360.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Create Shape'
+      TextSettings.Trimming = None
+      OnClick = BtnCreateShapeClick
+    end
+    object BtnSetText: TButton
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 253.000000000000000000
+      Size.Width = 360.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'SetText'
+      TextSettings.Trimming = None
+      OnClick = BtnSetTextClick
+    end
     object CbxTypeShape: TComboBox
       Align = Top
       Items.Strings = (
@@ -39,8 +75,8 @@ object FormMain: TFormMain
       Margins.Right = 10.000000000000000000
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 380.000000000000000000
+      Position.Y = 89.000000000000000000
+      Size.Width = 360.000000000000000000
       Size.Height = 39.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'comboboxstyle'
@@ -53,44 +89,15 @@ object FormMain: TFormMain
       DisableFocusEffect = False
       ItemIndex = 139
       Margins.Left = 10.000000000000000000
+      Margins.Top = 30.000000000000000000
       Margins.Right = 10.000000000000000000
       Margins.Bottom = 10.000000000000000000
       Position.X = 10.000000000000000000
-      Position.Y = 59.000000000000000000
-      Size.Width = 380.000000000000000000
+      Position.Y = 30.000000000000000000
+      Size.Width = 360.000000000000000000
       Size.Height = 39.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
-    end
-    object Button2: TButton
-      Align = Top
-      Margins.Left = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 10.000000000000000000
-      Position.Y = 108.000000000000000000
-      Size.Width = 380.000000000000000000
-      Size.Height = 40.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 1
-      Text = 'Create Shape'
-      TextSettings.Trimming = None
-      OnClick = Button2Click
-    end
-    object BtnSetText: TButton
-      Align = Top
-      Margins.Left = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 10.000000000000000000
-      Position.Y = 243.000000000000000000
-      Size.Width = 380.000000000000000000
-      Size.Height = 40.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 2
-      Text = 'SetText'
-      TextSettings.Trimming = None
-      OnClick = BtnSetTextClick
     end
     object EditText: TEdit
       Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -99,14 +106,43 @@ object FormMain: TFormMain
       TabOrder = 4
       Text = 'Delphi 2024'
       Position.X = 10.000000000000000000
-      Position.Y = 198.000000000000000000
+      Position.Y = 208.000000000000000000
       Margins.Left = 10.000000000000000000
-      Margins.Top = 40.000000000000000000
+      Margins.Top = 20.000000000000000000
       Margins.Right = 10.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 380.000000000000000000
+      Size.Width = 360.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
+    end
+  end
+  object GroupBox2: TGroupBox
+    Align = Top
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 30.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 449.000000000000000000
+    Size.Width = 380.000000000000000000
+    Size.Height = 100.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'WebView'
+    TabOrder = 2
+    object BtnCreateWebView1: TButton
+      Align = Bottom
+      AutoTranslate = False
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 50.000000000000000000
+      Size.Width = 360.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 38
+      Text = 'BtnCreateWebView'
+      TextSettings.Trimming = None
+      OnClick = BtnCreateWebView1Click
     end
   end
 end
